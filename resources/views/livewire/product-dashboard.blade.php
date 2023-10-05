@@ -14,23 +14,7 @@
 
                         <input class="min-w-10 border-gray-200 rounded" placeholder="Search" wire:model.live="search"
                             type="text">
-                        @if ( Auth::user()->role == 'Teamleader' )
-                        <a class=" ml-3 rounded-lg  relative w-36 h-10 cursor-pointer flex items-center border border-green-500 bg-green-500 group hover:bg-green-500 active:bg-green-500 active:border-green-500"
-                            href="sss">
-                            <span
-                                class="text-white font-semibold ml-8 transform group-hover:translate-x-20 transition-all duration-300">Add
-                                Item</span>
-                            <span
-                                class="absolute right-0 h-full w-10 rounded-lg bg-green-500 flex items-center justify-center transform group-hover:translate-x-0 group-hover:w-full transition-all duration-300">
-                                <svg class="svg w-8 text-white" fill="none" height="24" stroke="currentColor"
-                                    stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
-                                    width="24" xmlns="http://www.w3.org/2000/svg">
-                                    <line x1="12" x2="12" y1="5" y2="19"></line>
-                                    <line x1="5" x2="19" y1="12" y2="12"></line>
-                                </svg>
-                            </span>
-                        </a>
-                        @endif
+                        
 
 
                     </div>
@@ -87,8 +71,9 @@
                                     <div class="text-left font-medium text-green-500">${{$product->prices[0]->price}}
                                     </div>
                                 </td>
+                                @if (Auth::user()->role == 'Teamleader' || Auth::user()->role == 'Editor' )
                                 <td class="p-2 whitespace-nowrap">
-                                    @if (Auth::user()->role == 'Teamleader' || Auth::user()->role == 'Editor' )
+                                   
                                     <span
                                         class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
                                         <span aria-hidden
@@ -97,13 +82,17 @@
                                         </span>
                                     </span>
 
-                                    @endif
+                                
 
                                 </td>
+                                 @endif
                                 <td>
                                     <div class="flex text-blue-900">
                                         <!-- edit button -->
-                                        @livewire('edit-product',['product'=>$product], key($product->id))
+                                        @if (Auth::user()->role == 'Teamleader' || Auth::user()->role == 'Editor' )
+                                             @livewire('edit-product',['product'=>$product], key($product->id))
+                                        @endif
+                                       
                                         <svg class=" ml-2 h-5 w-5 text-blue-500" fill="none" viewBox="0 0 24 24"
                                             stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -121,10 +110,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                    <div>
-
-                        {{$products->links()}}
-                    </div>
+                 
                 </div>
             </div>
         </div>

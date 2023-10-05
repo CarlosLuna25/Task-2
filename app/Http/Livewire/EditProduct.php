@@ -15,17 +15,18 @@ class EditProduct extends Component
     public $product;
     public $productAux;
     protected $rules=[
-        'product.title'=>'required',
-        'product.provider_id'=>'required',
-         'product.store_id'=>'required',
-         'product.group_id'=>'required',
-         'product.description'=>'required',
-         'product.sku'=>'required',
+        'productAux.title'=>'required',
+        'productAux.provider_id'=>'required',
+         'productAux.store_id'=>'required',
+         'productAux.group_id'=>'required',
+         'productAux.description'=>'required',
+         'productAux.sku'=>'required',
          
     ];
     public function mount(product $product){
         $this->product= $product;
         $this->productAux= $product;
+
 
 
     }
@@ -34,9 +35,12 @@ class EditProduct extends Component
         $this->validate();
         if (Auth::user()->role=="Teamleader") {
             # code...
+          
+            $this->product=$this->productAux;
             $this->product->edit='Available';
             $this->product->editor_id= 0;
             $this->product->save();
+
             
             $this->emit('renderProduct');
             $this->modalEdit=false;
@@ -47,8 +51,8 @@ class EditProduct extends Component
             $change = new change();
             $change->table_name= "product";
             $change->status= "pending";
-            $change->original = json_encode($this->productAux);
-            $change->changes = json_encode($this->product);
+            $change->original = json_encode($this->product);
+            $change->changes = json_encode($this->productAux);
             $change->editor= Auth::user()->id;
             $change->save();
             $this->product->edit='Edited';
@@ -62,6 +66,7 @@ class EditProduct extends Component
     }
    
     public function OpenModal(){ 
+     
 
         if ($this->product->edit== 'in edition') {
             

@@ -18,7 +18,7 @@
                 </h1>
                 <label for="Product Title" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Product
                     Title</label>
-                <input id="title" wire:model='product.title'
+                <input id="title" wire:model='productAux.title'
                     class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
                     placeholder="James" />
                 <label for="email2" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">sku</label>
@@ -32,7 +32,7 @@
                         </svg>
 
                     </div>
-                    <input id="sku" wire:model='product.sku'
+                    <input id="sku" wire:model='productAux.sku'
                         class="text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-16 text-sm border-gray-300 rounded border"
                         placeholder="SKU" />
                 </div>
@@ -40,7 +40,7 @@
                     class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Provider</label>
                 <div class="relative mb-5 mt-2">
                    
-                    <select
+                    <select wire:model="productAux.provider_id"
                         class="  w-full border text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal border-gray-300 rounded-md p-2 mb-4  transition ease-in-out duration-150"
                         id="product">
                         @foreach ( App\Models\provider::all() as $item)
@@ -54,7 +54,7 @@
                     class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Store</label>
                 <div class="relative mb-5 mt-2">
                    
-                    <select
+                    <select wire:model="productAux.store_id"
                         class=" w-full border text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal border-gray-300 rounded-md p-2 mb-4  transition ease-in-out duration-150"
                         id="product">
                         @foreach ( App\Models\provider_store::all() as $item)
@@ -68,7 +68,7 @@
                     class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Group</label>
                 <div class="relative mb-5 mt-2">
                    
-                    <select
+                    <select wire:model="productAux.group_id"
                         class="  w-full border text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal border-gray-300 rounded-md p-2 mb-4  transition ease-in-out duration-150"
                         id="product">
                         @foreach ( App\Models\product_group::all() as $item)
@@ -82,7 +82,7 @@
                 <label for="cvc" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Description</label>
                 <div class="relative mb-5 mt-2">
                     
-                    <textarea wire:model='product.description' id="description"
+                    <textarea wire:model='productAux.description' id="description"
                         class="mb-8 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-20 flex items-center pl-3 text-sm border-gray-300 rounded border"
                         placeholder="MM/YY" ></textarea>
                 </div>

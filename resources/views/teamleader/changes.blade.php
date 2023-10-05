@@ -4,4 +4,7 @@
             {{ __('Changes') }}  
         </h2>
     </x-slot>
+    <div class="py-12">
+        @livewire('changes.changes')
+    </div>
 </x-app-layout>

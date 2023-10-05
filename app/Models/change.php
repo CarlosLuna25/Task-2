@@ -10,9 +10,9 @@ class change extends Model
 {
     protected $table= 'changes';
     use HasFactory;
-    protected $fillable = ['table_name', 'editor', 'changes', 'status', 'original'];
+    protected $fillable = ['table_name', 'editor', 'changes', 'status', 'original', 'reviewer'];
 
-    public function product() : BelongsTo
+    public function user() : BelongsTo
     {
         return $this->belongsTo(User::class, 'editor');
     }
