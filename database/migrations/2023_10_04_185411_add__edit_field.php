@@ -22,15 +22,15 @@ return new class extends Migration
     {
         Schema::table('product', function (Blueprint $table) {
             $table->string('edit')->nullable();
-            $table->unsignedBigInteger('editor_id');
+            $table->unsignedBigInteger('editor_id')->default(0);
         });
         Schema::table('product_price', function (Blueprint $table) {
             $table->string('edit')->nullable();
-            $table->unsignedBigInteger('editor_id');
+            $table->unsignedBigInteger('editor_id')->default(0);
         });
         Schema::table('provider', function (Blueprint $table) {
             $table->string('edit')->nullable();
-            $table->unsignedBigInteger('editor_id');
+            $table->unsignedBigInteger('editor_id')->default(0);
         });
     }
 
