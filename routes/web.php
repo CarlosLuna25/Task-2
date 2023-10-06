@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,7 +13,9 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+Route::get('/register', function () {
+    abort(404); // Retorna un error 404 para esta ruta
+})->name('register');
 
 Route::middleware([
     'auth:sanctum',
@@ -34,3 +37,4 @@ Route::middleware([
 
 
 });
+
