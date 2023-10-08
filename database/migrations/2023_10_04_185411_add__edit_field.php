@@ -44,24 +44,42 @@ return new class extends Migration
      */
     public function down(): void
     {
+
         Schema::table('product',function  (Blueprint $table){
-            $table->dropColumn('edit');
-            $table->dropColumn('editor_id');
+            if (Schema::hasColumn('product', 'edit')) {
+                $table->dropColumn('edit');
+            }
+            if (Schema::hasColumn('product', 'editor_id')) {
+                $table->dropColumn('editor_id');
+            }
+            
 
         });
         Schema::table('product_price',function  (Blueprint $table){
-            $table->dropColumn('edit');
-            $table->dropColumn('editor_id');
+            if (Schema::hasColumn('product_price', 'edit')) {
+                $table->dropColumn('edit');
+            }
+            if (Schema::hasColumn('product_price', 'editor_id')) {
+                $table->dropColumn('editor_id');
+            }
 
         });
         Schema::table('provider',function  (Blueprint $table){
-            $table->dropColumn('edit');
-            $table->dropColumn('editor_id');
+            if (Schema::hasColumn('provider', 'edit')) {
+                $table->dropColumn('edit');
+            }
+            if (Schema::hasColumn('provider', 'editor_id')) {
+                $table->dropColumn('editor_id');
+            }
 
         });
         Schema::table('inventory',function  (Blueprint $table){
-            $table->dropColumn('edit');
-            $table->dropColumn('editor_id');
+            if (Schema::hasColumn('inventory', 'edit')) {
+                $table->dropColumn('edit');
+            }
+            if (Schema::hasColumn('inventory', 'editor_id')) {
+                $table->dropColumn('editor_id');
+            }
 
         });
     }
