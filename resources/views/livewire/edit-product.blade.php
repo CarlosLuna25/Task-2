@@ -36,6 +36,7 @@
                         class="text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-16 text-sm border-gray-300 rounded border"
                         placeholder="SKU" />
                 </div>
+         
                 <label for="provider"
                     class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Provider</label>
                 <div class="relative mb-5 mt-2">
@@ -110,7 +111,7 @@
 
         </x-slot>
       
-        </x-dialog-modal>
+        </x-edit-modal>
 
 
 </div>

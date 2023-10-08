@@ -32,6 +32,11 @@ return new class extends Migration
             $table->string('edit')->nullable();
             $table->unsignedBigInteger('editor_id')->default(0);
         });
+        Schema::table('inventory', function (Blueprint $table) {
+            $table->string('edit')->nullable();
+            $table->unsignedBigInteger('editor_id')->default(0);
+        });
+
     }
 
     /**
@@ -50,6 +55,11 @@ return new class extends Migration
 
         });
         Schema::table('provider',function  (Blueprint $table){
+            $table->dropColumn('edit');
+            $table->dropColumn('editor_id');
+
+        });
+        Schema::table('inventory',function  (Blueprint $table){
             $table->dropColumn('edit');
             $table->dropColumn('editor_id');
 

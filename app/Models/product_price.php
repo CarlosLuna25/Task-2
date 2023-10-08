@@ -10,7 +10,7 @@ class product_price extends Model
 {
     protected $table ='product_price';
     use HasFactory;
-    protected $fillable= ['product_id', 'store_id', 'price'];
+    protected $fillable= ['product_id', 'store_id', 'price', 'edit', 'editor'];
 
     public function product() : BelongsTo
     {

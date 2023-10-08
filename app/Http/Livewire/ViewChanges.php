@@ -3,7 +3,9 @@
 namespace App\Http\Livewire;
 
 use App\Models\change;
+use App\Models\inventory;
 use App\Models\product;
+use App\Models\product_price;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
@@ -48,8 +50,10 @@ class ViewChanges extends Component
         }
     }
     public function save(){
+        // $changes is the var that contain all changes
+        $changes= json_decode($this->change->changes);
         if($this->change->table_name=='product'){
-            $changes= json_decode($this->change->changes);
+           
             $product = product::where('id',$changes->id)->first();
             $product->title= $changes->title;
             $product->group_id= $changes->group_id;
@@ -60,6 +64,30 @@ class ViewChanges extends Component
             $product->edit='Available';
             $product->editor_id=0;
             $product->save();
+            $this->change->delete();
+            $this->emit('renderChanges');
+
+        }
+        //inventory changes
+        if ($this->change->table_name=='inventory') {
+
+           $inventory = inventory::where('id',$changes->id)->first();
+           $inventory->warehouses_id = $changes->warehouses_id;
+           $inventory->stock= $changes->stock;
+           $inventory->edit='Available';
+           $inventory->editor_id=0;
+           $inventory->save();
+           $this->change->delete();
+           $this->emit('renderChanges');
+        }
+        
+        // price changes
+        if ($this->change->table_name=='price') {
+            $price = product_price::where('id',$changes->id)->first();
+            $price->price=$changes->price;
+            $price->edit='Available';
+            $price->editor_id=0;
+            $price->save();
             $this->change->delete();
             $this->emit('renderChanges');
 

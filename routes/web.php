@@ -30,10 +30,17 @@ Route::middleware([
     })->name('dashboard');
     Route::get('/products', function () {
         return view('products');
-    })->name('dashboard');
+    })->name('products');
+    Route::get('/inventory', function () {
+        return view('inventory.inventory');
+    })->name('inventory');
+    Route::get('/prices', function () {
+        return view('price.price');
+    })->name('prices');
     Route::get('/changes', function () {
         return view('teamleader.changes');
     })->name('changes')->middleware('Teamleader');
+ 
 
 
 });
