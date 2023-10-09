@@ -1,20 +1,30 @@
-<div>
+<div class="">
 
 
-    <div class="antialiased bg-gray-100 text-gray-600 h-screen px-4 py-5">
-        <div class="flex flex-col justify-center ">
+    <div class="antialiased bg-gray-100 text-gray-600 overflow-y-auto px-4 py-5">
+        <div class="flex  ">
             <!-- Table -->
 
-            <div class=" w-full px-4   mx-auto bg-white shadow-lg rounded-sm border border-gray-200">
+            <div class="px-4 mx-auto table-fix bg-white shadow-lg rounded-sm border border-gray-200">
                 <header class="px-5 py-4 border-b border-gray-100">
                     <h2 class="font-semibold text-gray-800">Products</h2>
                 </header>
                 <div class="p-3">
                     <div class="px-6 py-4 flex min-w-full ">
 
-                        <input class="min-w-10 border-gray-200 rounded" placeholder="Search" wire:model.live="search"
-                            type="text">
-                        
+                       
+                        <!-- Buscador con Icono -->
+                        <div class="flex items-center w-full mt-2 p-4">
+                            <div class="relative w-full">
+                                <span class="absolute inset-y-0 left-0 pl-3 flex items-center">
+                                    <i class="fas fa-search text-gray-200"></i>
+                                </span>
+                                <input type="text" wire:model.live="search"
+                                    class="pl-10 pr-4 py-2 rounded-full border border-gray-300 w-full text-sm placeholder-gray-400"
+                                    placeholder="Search..." />
+                            </div>
+                        </div>
+
 
 
                     </div>
@@ -68,38 +78,34 @@
                                     <div class=" text-center font-medium text-grey-500">{{$product->store->name}}</div>
                                 </td>
                                 <td class="p-2 whitespace-nowrap">
+                              
                                     <div class="text-left font-medium text-green-500">${{$product->prices[0]->price}}
                                     </div>
                                 </td>
                                 @if (Auth::user()->role == 'Teamleader' || Auth::user()->role == 'Editor' )
-                                    <td class="p-2 whitespace-nowrap">
-                                    
-                                        <span
-                                            class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
-                                            <span aria-hidden
-                                                class="absolute inset-0 {{$product->edit == NULL || $product->edit == 'Available' ? 'bg-green-200' : ($product->edit == 'Edited'? 'bg-orange-300' : 'bg-yellow-200' )  }} opacity-50 rounded-full"></span>
-                                            <span class="relative">{{$product->edit == NULL || $product->edit == 'Available'  ? 'Available' : $product->edit}}
-                                            </span>
+                                <td class="p-2 whitespace-nowrap">
+
+                                    <span
+                                        class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
+                                        <span aria-hidden
+                                            class="absolute inset-0 {{$product->edit == NULL || $product->edit == 'Available' ? 'bg-green-200' : ($product->edit == 'Edited'? 'bg-orange-300' : 'bg-yellow-200' )  }} opacity-50 rounded-full"></span>
+                                        <span class="relative">{{$product->edit == NULL || $product->edit == 'Available'
+                                            ? 'Available' : $product->edit}}
                                         </span>
+                                    </span>
 
-                                    
 
-                                    </td>
-                                 @endif
+
+                                </td>
+                                @endif
                                 <td>
                                     <div class="flex text-blue-900">
                                         <!-- edit button -->
                                         @if (Auth::user()->role == 'Teamleader' || Auth::user()->role == 'Editor' )
-                                             @livewire('edit-product',['product'=>$product], key($product->id))
+                                        @livewire('edit-product',['product'=>$product], key($product->id))
                                         @endif
+
                                        
-                                        <svg class=" ml-2 h-5 w-5 text-blue-500" fill="none" viewBox="0 0 24 24"
-                                            stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                                        </svg>
 
 
 
@@ -110,7 +116,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                 
+
                 </div>
             </div>
         </div>
