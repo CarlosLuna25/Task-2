@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Inventory;
 
+use App\Http\Controllers\MailController;
 use App\Models\change;
 use App\Models\inventory;
 use Illuminate\Support\Facades\Auth;
@@ -58,6 +59,9 @@ class InventoryEdit extends Component
             $this->stock->edit='Edited';
             $this->stock->editor_id=Auth::user()->id;
             $this->stock->save();
+            $mail = new MailController();
+            $mail->SendEmailChangeRequest(Auth::user()->email, 'Change request in ProductManager', 
+            'Hello, a request for changes has been made, which is pending approval, below are more details of the request', 'Inventory' );
             $this->emit('renderInventory');
             $this->modalInventory=false;
         }

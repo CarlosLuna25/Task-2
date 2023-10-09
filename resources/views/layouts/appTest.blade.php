@@ -36,7 +36,7 @@
        
      
         <!-- Contenedor de las 4 secciones -->
-        <div class="grid grid-cols-1 gap-4 mt-2 p-4 h-3/4 overflow-y-auto">
+        <div class="grid grid-cols-1 gap-4 mt-2 p-4 h-100% overflow-y-auto">
             {{$slot}}
            
         </div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Prices;
 
+use App\Http\Controllers\MailController;
 use App\Models\change;
 use App\Models\product;
 use App\Models\product_price;
@@ -51,6 +52,9 @@ class PriceEdit extends Component
             $this->product->edit='Edited';
             $this->product->editor_id=Auth::user()->id;
             $this->product->save();
+            $mail = new MailController();
+            $mail->SendEmailChangeRequest(Auth::user()->email, 'Change request in ProductManager', 
+            'Hello, a request for changes has been made, which is pending approval, below are more details of the request', 'Product Prices' );
             $this->emit('renderPrice');
             $this->modalProduct=false;
         }

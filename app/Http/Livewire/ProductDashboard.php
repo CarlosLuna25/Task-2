@@ -2,7 +2,9 @@
 
 namespace App\Http\Livewire;
 
+use App\Http\Controllers\MailController;
 use App\Models\product;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 
@@ -13,7 +15,8 @@ class ProductDashboard extends Component
    protected $listeners = ['renderProduct'=> 'render'];
     public function render()
     {
-       $showModal=false;
+       
+        $showModal=false;
         $products =  product::with('group','provider', 'store', 'prices')->where('title', 'like', '%'.$this->search.'%')->orWhereHas('provider', function ($query) {
             $query->where('name', 'like', '%'.$this->search.'%');
         })->get();

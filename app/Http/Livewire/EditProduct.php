@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Http\Controllers\MailController;
 use App\Models\change;
 use App\Models\product;
 use Illuminate\Support\Facades\Auth;
@@ -56,6 +57,9 @@ class EditProduct extends Component
             $this->product->edit='Edited';
             $this->product->editor_id=Auth::user()->id;
             $this->product->save();
+            $mail = new MailController();
+            $mail->SendEmailChangeRequest(Auth::user()->email, 'Change request in ProductManager', 
+            'Hello, a request for changes has been made, which is pending approval, below are more details of the request', 'Products' );
             $this->emit('renderProduct');
             $this->modalEdit=false;
         }
