@@ -6,7 +6,7 @@
 
             <div class=" w-3/4 px-4  mx-auto table-fix bg-white shadow-lg rounded-sm border border-gray-200">
                 <header class="px-5 py-4 border-b border-gray-100">
-                    <h2 class="font-semibold text-gray-800">Pending changes</h2>
+                    <h2 class="font-semibold text-gray-800">Inventory</h2>
                 </header>
                 <div class="p-3">
 
