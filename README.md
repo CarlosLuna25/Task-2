@@ -19,3 +19,7 @@
  ['name'=>'Viewer', 'email'=> 'Viewer3@testmail.com', 'role'=>'Viewer','password'=>'123456789' ]
 
 
+ ## About nitifications
+To receive the emails you must change the users' emails in the database
+
+
